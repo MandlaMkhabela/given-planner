@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Given</title>
+
+<!-- PWA: Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- PWA: Theme & status bar -->
+<meta name="theme-color" content="#050507">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Given">
+
+<!-- PWA: Icons -->
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+
+<!-- PWA: Description for search / share -->
+<meta name="description" content="Your personal life planner — shifts, tasks, family, plans">
+<meta name="application-name" content="Given">
+
 <link rel="stylesheet" href="given-style.css">
 </head>
 <body>
@@ -297,6 +317,17 @@
 <script src="given-notes.js"></script>
 <script src="given-firebase.js"></script>
 <script src="given-app.js"></script>
+
+<!-- PWA: Service Worker registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[SW] Registered:', reg.scope))
+      .catch(err => console.warn('[SW] Registration failed:', err));
+  });
+}
+</script>
 
 </body>
 </html>
